@@ -9,9 +9,9 @@ This is a Lightning Web Component (LWC) application that allows users to convert
 - Live & Historical Rates For 170+ Currency Pairs
 - User-friendly interface
 
-![image-1](image.png)
-![image-2](image-1.png)
-![image-3](image-2.png)
+![image-1](https://github.com/gredrian08/sfdc-lwc-currency-app/blob/main/media/Screenshot%201.png?raw=true)
+![image-2](https://github.com/gredrian08/sfdc-lwc-currency-app/blob/main/media/Screenshot%202.png?raw=true)
+![image-3](https://github.com/gredrian08/sfdc-lwc-currency-app/blob/main/media/Screenshot%203.png?raw=true)
 
 ## Resources
 
