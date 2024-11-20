@@ -103,7 +103,8 @@ export default class CurrencyApp extends LightningElement {
     
         this.getExchangeRateAndConvert(type, params);
         this.isConverted = false;
-
+        this.isProcessing = true;
+        this.isProcessed = false;
     }
 
     getExchangeRateAndConvert(requestType,urlParam) {
@@ -122,6 +123,8 @@ export default class CurrencyApp extends LightningElement {
                 );
             })
             .finally(() => {
+                this.isProcessing = false;
+                this.isProcessed = true;
                 this.isConverted = true;
             });
 
