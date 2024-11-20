@@ -96,11 +96,14 @@ export default class CurrencyApp extends LightningElement {
     }
 
     handleConversion() {
-        const type = this.isHistorical === false || new Date(this.historicalDate) >= new Date(this.formattedDate) ? "latest" : "historical",
-              params = type === "latest" 
-            ? { base_currency: this.fromCurrency, currencies: this.toCurrency }
-            : { date: this.historicalDate, base_currency: this.fromCurrency, currencies: this.toCurrency };
-    
+        const isLatest = this.isHistorical === false || new Date(this.historicalDate) >= new Date(this.formattedDate);
+        const params = {
+            ...(isLatest ? {} : { date: this.historicalDate }),
+            base_currency: this.fromCurrency,
+            currencies: this.toCurrency,
+        };
+        const type = isLatest ? "latest" : "historical";    
+        
         this.getExchangeRateAndConvert(type, params);
         this.isConverted = false;
         this.isProcessing = true;
