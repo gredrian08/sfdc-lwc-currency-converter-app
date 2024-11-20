@@ -4,5 +4,7 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "salesforce.einsteinForDevelopers.enableAutocompletions": true
+  "salesforce.einsteinForDevelopers.enableAutocompletions": true,
+  "salesforce.einsteinForDevelopers.enableDebugLogging": true,
+  "salesforce.einsteinForDevelopers.advanced": {}
 }

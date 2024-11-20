@@ -1,7 +1,7 @@
 /**
  * @description       : Class bundles methods making calls to https://app.currencyapi.com/
  * @author            : gredrianc
- * @last modified on  : 2024-09-22
+ * @last modified on  : 2024-11-20
  * @last modified by  : gredrianc
 **/
 public with sharing class CurrencyAPIConnector {
@@ -13,7 +13,7 @@ public with sharing class CurrencyAPIConnector {
     @AuraEnabled(cacheable=true)
     public static String checkConnection(){
         try {
-            return callChatGPT('currencies?type=fiat');
+            return httpRequestHelper('currencies?type=fiat');
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -31,14 +31,14 @@ public with sharing class CurrencyAPIConnector {
         try {
 			PageReference pr = new PageReference(requestType);
 			pr.getParameters().putAll(urlParam);
-            return callChatGPT(pr.getUrl());
+            return httpRequestHelper(pr.getUrl());
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
 
 	}
 
-	public static String callChatGPT(String requestType) {
+	public static String httpRequestHelper(String requestType) {
 		HttpRequest request = new HttpRequest();
 		request.setMethod('GET');
 		request.setEndpoint('callout:CurrencyApi' + '/' + requestType);
