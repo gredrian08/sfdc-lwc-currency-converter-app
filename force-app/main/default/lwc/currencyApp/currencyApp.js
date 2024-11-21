@@ -60,6 +60,7 @@ export default class CurrencyApp extends LightningElement {
 
     handleAmount(event) {
         this.amount = event.detail.value;
+        this.isConverted = false;
     }
 
     handleFromChange(event) {
