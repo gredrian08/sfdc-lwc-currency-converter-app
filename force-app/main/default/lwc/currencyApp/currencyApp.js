@@ -1,6 +1,6 @@
 /*
  * @author            : gredrianc
- * @last modified on  : 2024-11-20
+ * @last modified on  : 2024-11-21
  * @last modified by  : gredrianc
  */
 import { LightningElement, track } from 'lwc';
@@ -32,17 +32,13 @@ export default class CurrencyApp extends LightningElement {
     connectedCallback() {
         checkConnection()
             .then(results=>{
-                const option = [],
-                      result = JSON.parse(results);
-                for(const code in result.data) {
-                    if(result.data[code].code && result.data[code].name){
-                        option.push({
-                            label: `${result.data[code].code} - ${result.data[code].name}`, 
-                            value: result.data[code].code
-                        });
-                    }
-                }
-                this.options = [...option];
+                const result = JSON.parse(results);
+                this.options = Object.entries(result.data) 
+                    .filter(([currencyCode, data]) => data.code && data.name) 
+                    .map(([currencyCode, data]) => ({ 
+                        label: `${data.code} - ${data.name}`, 
+                        value: data.code 
+                    }));
                 this.isProcessing = false;
             })
             .catch(() => {
